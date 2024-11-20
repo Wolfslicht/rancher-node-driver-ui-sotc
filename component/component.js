@@ -54,7 +54,7 @@ const clusterFlavorDetails = `Cluster flavor, which cannot be changed after the 
     cce.s2.large: large-scale, high availability VM cluster (≤ 1,000 nodes)
     cce.s2.xlarge: ultra-large-scale, high availability cluster (<= 2,000 nodes)
 `
-const instanceFlavorReference = 'https://docs.otc.t-systems.com/en-us/usermanual/ecs/en-us_topic_0177512565.html'
+const instanceFlavorReference = 'https://docs.sc.otc.t-systems.com/en-us/usermanual/ecs/en-us_topic_0177512565.html'
 const typeVM = 'VirtualMachine'
 const clusterTypes = [
   {
@@ -86,6 +86,11 @@ const lbProtocols = [
 ]
 const k8sVersions = {
   'latest': '',
+  'v1.31': 'v1.31',
+  'v1.30': 'v1.30',
+  'v1.29': 'v1.29',
+  'v1.28': 'v1.28',
+  'v1.27':  'v1.27',
   'v1.25':  'v1.25',
   'v1.23':  'v1.23',
 }
@@ -422,7 +427,7 @@ export default Ember.Component.extend(ClusterDriver, {
       config = get(this, 'globalStore').createRecord({
         type: configField,
         // authentication
-        authUrl: 'https://iam.eu-de.otc.t-systems.com/v3',
+        authUrl: regions.includes('eu-ch2') ? 'https://iam-pub.eu-ch2.sc.otc.t-systems.com/v3' : 'https://iam.eu-de.otc.t-systems.com/v3',
         // ak/sk
         accessKey: '',
         secretKey: '',
